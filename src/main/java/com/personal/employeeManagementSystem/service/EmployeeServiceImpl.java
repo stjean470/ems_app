@@ -1,6 +1,7 @@
 package com.personal.employeeManagementSystem.service;
 
 import com.personal.employeeManagementSystem.dto.EmployeeDTO;
+import com.personal.employeeManagementSystem.exceptions.EmployeeNotFoundException;
 import com.personal.employeeManagementSystem.mapper.EmployeeMapper;
 import com.personal.employeeManagementSystem.model.Employee;
 import com.personal.employeeManagementSystem.repository.EmployeeRepository;
@@ -22,5 +23,11 @@ public class EmployeeServiceImpl implements EmployeeService{
         Employee saveEmployee = employeeRepository.save(employee);
         //map that employee back into a new EmployeeDto and return it to the client
         return EmployeeMapper.mapToEmployeeDto(saveEmployee);
+    }
+
+    @Override
+    public EmployeeDTO getEmployeeById(Long empId) {
+        Employee emp = employeeRepository.findById(empId).orElseThrow(() -> new EmployeeNotFoundException("Employee with given id not found: " + empId + "!"));
+        return EmployeeMapper.mapToEmployeeDto(emp);
     }
 }
