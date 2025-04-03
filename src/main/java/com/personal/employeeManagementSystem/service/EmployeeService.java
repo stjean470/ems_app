@@ -10,5 +10,5 @@ public interface EmployeeService {
 
     EmployeeDTO getEmployeeById(Long empId);
 
-    //List<EmployeeDTO> getAllEmployees();
+    List<EmployeeDTO> getAllEmployees();
 }
