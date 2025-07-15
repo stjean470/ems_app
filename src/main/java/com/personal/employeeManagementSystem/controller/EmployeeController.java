@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/employees")
 public class EmployeeController {
@@ -26,7 +26,7 @@ public class EmployeeController {
         return ResponseEntity.ok(employeeService.getEmployeeById(empId));
     }
 
-    @GetMapping("/employees")
+    @GetMapping
     public ResponseEntity<List<EmployeeDTO>> getAllEmployees() {
         return ResponseEntity.ok(employeeService.getAllEmployees());
     }
